@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { addPost } from './actions'
+import { addPost, getPost } from './actions'
 import './App.css';
 
 import Menu from './components/template/menu';
@@ -21,6 +21,8 @@ class App extends Component {
         posts: store.getState().posts
       }))
     })
+
+    this.getPost();
   }
 
   addPost = () => {
@@ -30,6 +32,10 @@ class App extends Component {
     }))
 
     this.input.value = ''
+  }
+
+  getPost = () => {
+    this.props.store.dispatch(getPost({ }))
   }
 
   render() {
@@ -53,7 +59,6 @@ class App extends Component {
       </div>
     );
   }
-
 }
 
 export default App;

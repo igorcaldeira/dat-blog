@@ -1,6 +1,8 @@
 import {
-    ADD_POST
+    ADD_POST,
+    GET_POST
 } from '../actions'
+
 
 const initialPostState = {
     posts: []
@@ -12,15 +14,22 @@ function posts(state = initialPostState, action){
     switch(action.type){
         case ADD_POST :
 
-            var newState = state;
-
-            newState.posts.push({
+            var newPosts = state.posts.push({
                 owner, text,
             });
 
-            return newState
+            return {
+                ...state,
+                newPosts
+            }
+        case GET_POST :
+
+            return {
+                ...state,
+                posts: action.payload
+            }
         default :
-            console.log("default")
+            break;
     }
 }
 
