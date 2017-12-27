@@ -14,8 +14,19 @@
   color: white;
 }
 
+.App-title {
+  font-size: 1.5em;
+}
+
 .App-intro {
   font-size: large;
+}
+
+.grid-container{
+  width: 90%;
+  max-width: 1600px;
+  margin: 0 auto;
+  margin-top: 40px;
 }
 
 @keyframes App-logo-spin {
