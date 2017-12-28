@@ -9,7 +9,6 @@ import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 
 class App extends Component {
-
   render() {
     return (
       <div className="App">
@@ -17,7 +16,7 @@ class App extends Component {
           <Toolbar>
             <img src={logo} className="App-logo" alt="logo" width="50px" height="50px"/>
             <Typography type="title" color="inherit">
-              Title
+              Posts
             </Typography>
           </Toolbar>
         </AppBar>

@@ -9,3 +9,10 @@
 .post-item.display-true{
     opacity: 1;
 }
+
+.grid-container{
+    width: 90%;
+    max-width: 880px;
+    margin: 0 auto;
+    margin-top: 40px;
+}
