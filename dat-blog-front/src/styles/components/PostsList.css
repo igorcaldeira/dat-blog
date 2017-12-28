@@ -1,0 +1,11 @@
+.post-item{
+    transition: opacity 300ms ease-in;
+}
+
+.post-item.display-none{
+    opacity: 0.001;
+}
+
+.post-item.display-true{
+    opacity: 1;
+}
