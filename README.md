@@ -1,5 +1,25 @@
 # dat-blog
 Simple blog project to study
 
-Front: serve -s build
-Back: nodemon npm run start
+## Front: 
+
+cd dat-blog-front
+yarn start
+
+## Back: 
+
+cd dat-blog-back
+nodemon npm run start
+
+
+
+### Shortcut
+
+install dependencies at front and back end
+./run-prepare.sh 
+
+start front project
+./run-front.sh
+
+start back project
+./run-back.sh
