@@ -4,10 +4,19 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose    = require('mongoose');
+var mung = require('express-mung');
+var jwt     = require('jsonwebtoken'); // used to create, sign, and verify tokens
 
+const auth = require('./routes/auth.js');
+const users = require('./routes/users.js');
 const posts = require('./routes/posts.js');
 
 var app = express();
+// configuration
+var config = require('./config'); // get our config file
+mongoose.connect(config.database); // connect to database
+app.set('superSecret', config.secret); // secret variable
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,7 +36,50 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/posts', posts);
+let definePublicRoutes = function(){
+  app.use('/api/auth', auth);
+}
+
+let definePrivateRoutes = function(){
+  app.use('/api/users', users);
+  app.use('/api/posts', posts);
+}
+
+definePublicRoutes();
+
+//middleware to access response body object 
+app.use(function(req, res, next) {
+
+  // check header or url parameters or post parameters for token
+  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+  // decode token
+  if (token) {
+
+    // verifies secret and checks exp
+    jwt.verify(token, app.get('superSecret'), function(err, decoded) {      
+      if (err) {
+        return res.json({ success: false, message: 'Failed to authenticate token.' });    
+      } else {
+        // if everything is good, save to request for use in other routes
+        req.decoded = decoded;    
+        next();
+      }
+    });
+
+  } else {
+
+    // if there is no token
+    // return an error
+    return res.status(403).send({ 
+        success: false, 
+        message: 'No token provided.' 
+    });
+
+  }
+});
+
+definePrivateRoutes();
 
 app.route('/status').get(function(req, res) {
   res.sendfile(__dirname + '/public/statuspage.html');
@@ -50,5 +102,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;
