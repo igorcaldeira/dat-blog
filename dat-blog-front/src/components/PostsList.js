@@ -21,7 +21,7 @@ class PostsList extends Component {
 
   getPosts = function(){
     var self = this;
-    this.getPostsAPI().then(function(data){
+    this.callPostsAPI().then(function(data){
 
       self.setState({
         posts: data
@@ -39,8 +39,8 @@ class PostsList extends Component {
     });
   }
 
-  async getPostsAPI(){
-    const res = await axios.get(url+"/posts")
+  async callPostsAPI(){
+    const res = await axios.get(url+"/api/posts")
     return res.data
   }
 
