@@ -20,23 +20,20 @@ class BlogDialog extends React.Component {
   }
 
   componentDidMount(){
-    this.setState({
-        title: this.props.title,
-        message: this.props.message,
-    })
-  }
-  
-  abacate = () => {
-    alert('asdasdasd');
+
   }
 
-  handleClickOpen = () => {
+  open = (title, message) => {
     let newState = this.state;
+    
     newState.open = true;
+    newState.title = title;
+    newState.message = message;
+
     this.setState(newState);
   };
 
-  handleClose = () => {
+  hide = () => {
     let newState = this.state;
     newState.open = false;
     this.setState(newState);
@@ -45,14 +42,14 @@ class BlogDialog extends React.Component {
   render() {
     return (
       <div>
-        <Button onClick={this.handleClickOpen}>
+        {/* <Button onClick={this.handleClickOpen}>
         Slide in alert dialog
-        </Button>
+        </Button> */}
           <Dialog
             open={this.state.open}
             transition={Transition}
             keepMounted
-            onClose={this.handleClose}
+            onClose={this.hide}
             aria-labelledby="alert-dialog-slide-title"
             aria-describedby="alert-dialog-slide-description"
           >
@@ -65,7 +62,7 @@ class BlogDialog extends React.Component {
               </DialogContentText>
             </DialogContent>
             <DialogActions>
-              <Button onClick={this.handleClose} color="primary">
+              <Button onClick={this.hide} color="primary">
                 Ok
               </Button>
             </DialogActions>
