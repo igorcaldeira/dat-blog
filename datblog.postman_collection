@@ -1,0 +1,22 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Dat-Blog",
+		"_postman_id": "bcf74f76-5183-a707-7337-b29df7ede5ff",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Posts",
+			"request": {
+				"url": "http://localhost:4002/api/posts",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Post listing"
+			},
+			"response": []
+		}
+	]
+}
