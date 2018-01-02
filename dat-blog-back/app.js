@@ -38,11 +38,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 let definePublicRoutes = function(){
   app.use('/api/auth', auth);
+  app.use('/api/posts', posts);
 }
 
 let definePrivateRoutes = function(){
   app.use('/api/users', users);
-  app.use('/api/posts', posts);
 }
 
 definePublicRoutes();
