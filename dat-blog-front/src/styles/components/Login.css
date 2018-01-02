@@ -1,0 +1,26 @@
+.login-container{
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.card-content{
+    padding: 50px !important;
+    margin-left: 20px !important;
+    text-align: center;
+}
+
+.input-line{
+    display: block !important;
+    margin: 15px 0px !important;
+}
+
+.main-button{
+    margin-top: 20px;
+}
+
+.icon-account{
+    color: #b9b9b9;
+    width: 60px !important;
+    height: 60px !important;
+}

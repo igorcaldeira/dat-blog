@@ -30,8 +30,6 @@ router.post('/', function(req, res) {
             admin: user.admin 
         };
 
-        console.log(payload);
-        
             var token = jwt.sign(payload, config.secret, {
 
             });
